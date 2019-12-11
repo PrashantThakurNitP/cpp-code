@@ -1,0 +1,74 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main()
+{
+	int t;
+	cin>>t;
+	for(int k=0;k<t;k++)
+	{
+		
+		int n,m;
+		cin>>n>>m;
+		vector<int>a;
+		vector<int> b;
+		vector<int>v1(n,-1);
+		for(int i=0;i<n;i++)
+		{
+			int temp;
+			cin>>temp;
+			a.push_back(temp);
+		}
+		for(int j=0;j<m;j++)
+		{
+			int temp;
+			cin>>temp;
+			b.push_back(temp);
+		}
+/*for(int i=0;i<n;i++)
+  cout<<a[i]<<" ";
+  cout<<endl;
+  for(int j=0;j<m;j++)
+  cout<<b[j]<<" ";
+  cout<<endl;*/
+		for(int j=0;j<m;j++)
+		{
+		//	cout<<" j = "<<j<<endl;
+		//	bool flag=0;
+			for(int i=j;i<n;i+=(j+1))
+			{
+				//cout<<" i = "<<i<<endl;
+				//if((j+1)%(i+1)==0)
+				if(a[i]<=b[j])
+				{
+				   // cout<<a[i]<<"a[i] a[j] "<<b[j]<<endl;
+				   //   cout<<i<<"i j "<<j<<endl;
+				//	flag=1;
+					//cout<<j+1<<endl;
+					//break;
+				//	c
+				if(v1[i]!=-1){
+				   // cout<<"v1[i] i is "<<v1[i]<<endl;
+				  continue;
+				}
+			     	//c[i]=j+1;
+			     	//v1.insert(v1.begin()+i,j+1);
+			     	v1[i]=j+1;
+			     /*	cout<<"inserted at v1=wherere a[i] was "<<a[i]<<" "<<j+1<<endl;
+			     	cout<<"v1[i] is \n";
+			     	for(int i=0;i<n;i++)
+                     cout<<v1[i]<<" ";
+                     cout<<endl;*/
+				}
+			}
+			//if(flag==1)
+			 //  cout<<j+1<<endl;
+			//else if(flag==0)
+			//	cout<<"-1"<<endl;
+		}
+		for(int i=0;i<n;i++)
+		  cout<<v1[i]<<endl;
+	}
+	return 0;
+}

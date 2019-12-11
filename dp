@@ -1,0 +1,83 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+vector<int> optimal_sequence_dp(int n) {
+  vector<int> sequence;
+  vector<int>op(n+1,0);
+  vector<int>nextelement;
+  for(int i=n-1;i>=1;i--)
+  {   int min1=99999; 
+      int pos;
+      int min_pos;
+    
+      for(int j=n;j>i;j--)
+      {
+        int temp1,temp2,temp3,temp=99999;
+        int pos1,pos2,pos3;
+        if(i==j-1)
+        {
+          temp1=op[j]+1;
+          pos1=j;
+        }
+          
+         if(i==j/2 && j%2==0)
+         {
+          temp2=op[j]+1;
+          pos2=j;
+        }
+         if(i==j/3 && j%3==0)
+         {
+          temp3=op[j]+1;
+          pos3=j;
+        }
+        if(temp1<temp2 && temp1<temp3)
+        {
+          pos=pos1;
+          temp=temp1;
+        }
+        else if(temp2<temp1 && temp2<temp3)
+        {
+           pos=pos2;
+          temp=temp2;
+        }
+        else if(temp3<temp1 && temp3<temp2)
+        {
+           pos=pos3;
+          temp=temp3;
+        }
+        
+         if(min1>temp)
+         {
+          min1=temp;
+          min_pos=pos;
+         }
+      }
+      op[i]=min1;
+
+       nextelement.push_back(min_pos);//min pos denote while backtracing from 
+       //which element this element has come
+  }
+  nextelement.push_back(1);
+//for(int i=1;i<op.size();i++)
+ // cout<<op[1]<<endl;
+  reverse(nextelement.begin(), nextelement.end());
+  int u=0;
+  while(u<nextelement.size())
+ {
+   sequence.push_back(nextelement[u]);
+   u=nextelement[u];
+  }
+  return sequence;
+}
+int main() {
+  int n;
+  std::cin >> n;
+  vector<int> sequence = optimal_sequence_dp(n);
+  std::cout << sequence.size() - 1 << std::endl;
+  for (size_t i = 0; i < sequence.size(); ++i) {
+    std::cout << sequence[i] << " ";
+  }
+}
+

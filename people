@@ -1,0 +1,23 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+  
+  int n;
+  cin>>n;//total noof people
+  cin>>g;//no people in abuilding
+  vector<int>x;
+  vector<int>y;
+  for(int i=0;i<n;i++)
+  {
+    int a1,b1;
+    cin>>a1>>b1;
+    x.push_back(a1);
+    y.push_back(b1); 
+  }
+  //int x_sum=accumulate(x.begin(), x.end(), 0);
+  //int y_sum=accumulate(y.begin(), y.end(), 0);
+  int n_b=n/g;//no of building
+  
+}
